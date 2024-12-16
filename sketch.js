@@ -10,7 +10,7 @@ const NA = 15;
 
 function preload() {
   for (let i = 0; i < NA; i++) {
-    azulejos[i] = loadImage("tiles/tile" + i + ".jpg");
+    azulejos[i] = loadImage("./tiles/tile" + i + ".png");
   }
 }
 
