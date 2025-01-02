@@ -6,7 +6,7 @@ let alto;
 const startButton = document.getElementById("start");
 
 const azulejos = [];
-const NA = 15;
+const NA = 43;
 
 function preload() {
   for (let i = 0; i < NA; i++) {
@@ -37,7 +37,11 @@ function setup() {
 }
 
 function draw() {
-  const celdasDisponibles = celdas.filter((celda) => {
+  const celdasConOpciones = celdas.filter((celda) => {
+    return celda.opciones.length > 0;
+  });
+
+  const celdasDisponibles = celdasConOpciones.filter((celda) => {
     return celda.colapsada == false;
   });
 
@@ -62,6 +66,11 @@ function draw() {
       for (let y = 0; y < RETICULAY; y++) {
         const celdaIndex = x + y * RETICULAX;
         const celdaActual = celdas[celdaIndex];
+        if (celdaActual.opciones.length < 1) {
+          fill(255, 100, 100);
+          rect(x * ancho, y * alto, ancho, ancho);
+        }
+
         if (celdaActual.colapsada) {
           const indiceAzulejo = celdaActual.opciones[0];
           const reglasActuales = reglas[indiceAzulejo];
